@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>NRepository WebApi examples</title>
+</head>
+<body style="padding:30px 30px 30px 30px ">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+        function UpdateCategory() {
+            jQuery.support.cors = true;
+            var category = {
+                Id: $('#txtId').val(),
+                CategoryName: $('#txtCategoryName').val(),
+                CategoryDescription: $('#txtCategoryDescription').val(),
+            };
+
+            $.ajax({
+                url: 'http://localhost:54004/api/Sales/UpdateCategory',
+                type: 'PUT',
+                data: JSON.stringify(category),
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+        function InsertCategory() {
+            jQuery.support.cors = true;
+            var category = {
+                CategoryName: $('#txtCategoryName').val(),
+                CategoryDescription: $('#txtCategoryDescription').val(),
+            };
+
+            $.ajax({
+                url: 'http://localhost:54004/api/Sales/InsertCategory',
+                type: 'POST',
+                data: JSON.stringify(category),
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+
+    </script>
+
+    <h2>NRepository:  OData & WebApi examples</h2>
+    *** Preliminary examples V0.7 ***
+    <br />
+    <br />
+    Sample code built on the Northwind database created using CodeFirst (see Northwind.Domain.Core project).
+    <br />
+    To view database goto SqlServer Management Studio and connect using the server name '(LocalDb)\v11.0'. The database will be named NRepository_Northwind.
+    <br />
+    <br />
+    <i> N.B. This sample code is still currently being developed. Why not recheck in a couple of days for a newer version :)</i>
+    <br />
+    <br />
+
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#orders">WebApi : OrdersController</button>
+    <div id="orders" class="collapse">
+        <h4>Using projection via query interception</h4>
+
+        <p>
+            <a href="/api/orders/ImportantCustomers">/api/orders/ImportantCustomers</a><br />
+            <a href="/api/orders/AllCustomers">/api/orders/AllCustomers</a><br />
+            <a href="/api/orders/AllCustomers?take=10&orderby=CombinedOrderValue">/api/orders/AllCustomers?take=10&orderby=CombinedOrderValue</a><br />
+            <a href="/api/orders/AllCustomers?take=2&skip=1&orderby=CombinedOrderValue&ascending=false">/api/orders/AllCustomers?take=2&skip=1&orderby=CombinedOrderValue&ascending=false</a><br />
+
+            <!--
+                <a href=""></a><br />
+            <a href=""></a>-->
+        </p>
+
+        <h4>Retrieving data via Stored procedure using query strategy</h4>
+        <a href="/api/Orders/CustomerOrderHistory/VINET">/api/Orders/CustomerOrderHistory/VINET</a>
+        <!--   http://localhost:54004/api/Sales/SalesCategories-->
+    </div>
+    <br />
+    <br />
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#sales">WebApi : SalesController</button>
+    <div id="sales" class="collapse">
+
+        <h4>Using projection via query interception calling the database using sql</h4>
+
+        <p>
+            <a href="/api/Sales/SalesCategories">/api/Sales/SalesCategories</a><br />
+        </p>
+
+
+        <h4>Insert / Update Category with auditing and auto property setting</h4>
+
+        <p>
+            <table>
+                <tr><td>Id</td><td><input type="text" id="txtId" value="1" disabled="true" /></td></tr>
+                <tr>  <td>Category Name:</td><td><input type="text" id="txtCategoryName" value="New Cat Name" /></td></tr>
+                <tr> <td>Category Description:</td><td><input type="text" id="txtCategoryDescription" value="New Category Description" /></td></tr>
+            </table>
+            <button onclick="UpdateCategory(); return false;">Update Category</button>
+            <button onclick="InsertCategory(); return false;">Insert Category</button>
+        </p>
+    </div>
+    <br />
+    <br />
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#accounts">WebApi : AccountsController</button>
+    <div id="accounts" class="collapse">
+
+        <h4>Simple Search, Paging & Ordering Strategies Example</h4>
+
+        <p>
+            <a href="/api/Accounts/SearchAccounts">/api/accounts/SearchAccounts</a><br />
+            <a href="/api/Accounts/SearchAccounts?search=j&ascending=false">/api/Accounts/SearchAccounts?search=j&ascending=false</a><br />
+            <a href="/api/Accounts/SearchAccounts?page=2&pagesize=3">/api/Accounts/SearchAccounts?page=2&pagesize=3</a><br />
+        </p>
+    </div><br />
+
+    <br />
+
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#customer2">OData : CustomerController</button>
+    <div id="customer2" class="collapse">
+
+        <h2></h2>
+        <h4>Standard OData controller using Customer Specific specification strategy </h4>
+
+        <p>
+            <a href="/odata/Customers">/odata/Customers</a><br />
+            <a href="/odata/Customers?customerId='ANTON'">/odata/Customers?customerId='ANTON</a><br />
+        </p>
+
+    </div>
+    <br />
+    <br />
+
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#mongocustomer">OData : MongoDb CustomerController</button>
+    <div id="mongocustomer" class="collapse">
+
+        <h4>Uses MongoDb storage instead of SqlServer if the following steps are followed.</h4>
+
+        In order to use the mongo database implementation of this OdataController please ensure that you have :
+        <br />
+        1. Installed MongoDb and that the MongoD.exe is running.
+        <br />
+        2. You've uncommented the highlighted lines in the UnityConfig.
+        <br />
+        <br />
+        If you are unsure  about which implemention of IRepository is being used (EntityFrameworkRepository or MongoDbRepository) simply place a breakpoint in the CustomerController constructor and check it's type.
+        <p>
+            <a href="/odata/Customers">/odata/Customers</a><br />
+            <a href="/odata/Customers?customerId='ANTON'">/odata/Customers?customerId='ANTON</a><br />
+        </p>
+
+    </div>
+    <br />
+    <br />
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#aggregate">OData : AggregateCustomerSalesController</button>
+    <div id="aggregate" class="collapse">
+
+        <h4>A read only controller that uses projection to abstract the domain entities and stops the bleeding of domain entities into your OData implementation</h4>
+
+        <p>
+            <a href="odata/readonly/AggregateCustomerSales">odata/readonly/AggregateCustomerSales</a><br />
+            <a href="odata/readonly/AggregateCustomerSales?customerId='ANTON'">/odata/Customers?customerId='ANTON</a><br />
+        </p>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

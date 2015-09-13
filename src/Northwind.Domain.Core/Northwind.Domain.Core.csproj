@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B5995CDD-757B-4CE4-AEC9-F7223CC51FC6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Northwind.Domain.Core</RootNamespace>
+    <AssemblyName>Northwind.Domain.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=1.10.0.62, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.10.0.62, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\mongocsharpdriver.1.10.0\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="NRepository.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=71ae69dfa47b271c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NRepository.Core.3.3.0.0\lib\net45\NRepository.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NRepository.MongoDb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=71ae69dfa47b271c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\NRepository.MongoDb.2.1.0.0\lib\net45\NRepository.MongoDb.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Repository\Migrations\1\201410181330124_CreateDatabase.cs" />
+    <Compile Include="Repository\Migrations\1\201410181330124_CreateDatabase.Designer.cs">
+      <DependentUpon>201410181330124_CreateDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\Migrations\201509131528132_RemovedAuditTables.cs" />
+    <Compile Include="Repository\Migrations\201509131528132_RemovedAuditTables.Designer.cs">
+      <DependentUpon>201509131528132_RemovedAuditTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\Migrations\2\201501041624083_AddAuditingAndTrackedEntitiesForCategory.cs" />
+    <Compile Include="Repository\Migrations\2\201501041624083_AddAuditingAndTrackedEntitiesForCategory.Designer.cs">
+      <DependentUpon>201501041624083_AddAuditingAndTrackedEntitiesForCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\Migrations\Configuration.cs" />
+    <Compile Include="Repository\Migrations\DatabaseExtender.cs" />
+    <Compile Include="Repository\Migrations\DbMigrationExtender.cs" />
+    <Compile Include="Repository\Entities\AlphabeticalListOfProduct.cs" />
+    <Compile Include="Repository\Entities\Category.cs" />
+    <Compile Include="Repository\Entities\CategorySalesFor1997.cs" />
+    <Compile Include="Repository\Entities\CurrentProductList.cs" />
+    <Compile Include="Repository\Entities\Customer.cs" />
+    <Compile Include="Repository\Entities\CustomerAndSuppliersByCity.cs" />
+    <Compile Include="Repository\Entities\CustomerDemographic.cs" />
+    <Compile Include="Repository\Entities\Employee.cs" />
+    <Compile Include="Repository\Entities\Invoice.cs" />
+    <Compile Include="Repository\Entities\Mapping\AlphabeticalListOfProductMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\CategoryMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\CategorySalesFor1997Map.cs" />
+    <Compile Include="Repository\Entities\Mapping\CurrentProductListMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\CustomerAndSuppliersByCityMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\CustomerDemographicMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\CustomerMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\EmployeeMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\InvoiceMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\OrderDetailMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\OrderDetailsExtendedMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\OrderMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\OrdersQryMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\OrderSubtotalMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\ProductMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\ProductsAboveAveragePriceMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\ProductSalesFor1997Map.cs" />
+    <Compile Include="Repository\Entities\Mapping\ProductsByCategoryMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\RegionMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\SalesByCategoryMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\SalesTotalsByAmountMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\ShipperMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\SummaryOfSalesByQuarterMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\SummaryOfSalesByYearMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\SupplierMap.cs" />
+    <Compile Include="Repository\Entities\Mapping\TerritoryMap.cs" />
+    <Compile Include="Repository\NRepository_NorthwindContext.cs" />
+    <Compile Include="Repository\Entities\Order.cs" />
+    <Compile Include="Repository\Entities\OrderDetail.cs" />
+    <Compile Include="Repository\Entities\OrderDetailsExtended.cs" />
+    <Compile Include="Repository\Entities\OrdersQry.cs" />
+    <Compile Include="Repository\Entities\OrderSubtotal.cs" />
+    <Compile Include="Repository\Entities\Product.cs" />
+    <Compile Include="Repository\Entities\ProductsAboveAveragePrice.cs" />
+    <Compile Include="Repository\Entities\ProductSalesFor1997.cs" />
+    <Compile Include="Repository\Entities\ProductsByCategory.cs" />
+    <Compile Include="Repository\Entities\Region.cs" />
+    <Compile Include="Repository\Entities\SalesByCategory.cs" />
+    <Compile Include="Repository\Entities\SalesTotalsByAmount.cs" />
+    <Compile Include="Repository\Entities\Shipper.cs" />
+    <Compile Include="Repository\Entities\SummaryOfSalesByQuarter.cs" />
+    <Compile Include="Repository\Entities\SummaryOfSalesByYear.cs" />
+    <Compile Include="Repository\Entities\Supplier.cs" />
+    <Compile Include="Repository\Entities\Territory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\Data.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Repository\Migrations\1\201410181330124_CreateDatabase.resx">
+      <DependentUpon>201410181330124_CreateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Repository\Migrations\201509131528132_RemovedAuditTables.resx">
+      <DependentUpon>201509131528132_RemovedAuditTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Repository\Migrations\2\201501041624083_AddAuditingAndTrackedEntitiesForCategory.resx">
+      <DependentUpon>201501041624083_AddAuditingAndTrackedEntitiesForCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Repository\Migrations\_SharedResources\DropStatisticInsideMigration.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.AlphabeticalListOfProducts.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.CategorySalesFor1997.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.CurrentProductList.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.CustomerAndSuppliersByCity.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.CustOrderHist.StoredProcedure.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.CustOrdersDetail.StoredProcedure.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.CustOrdersOrders.StoredProcedure.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.EmployeeSalesByCountry.StoredProcedure.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.Invoices.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.OrderDetailsExtended.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.OrdersQry.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.OrderSubtotals.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.ProductsAboveAveragePrice.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.ProductSalesFor1997.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.ProductsByCategory.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.QuarterlyOrders.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.SalesByCategory.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.SalesByYear.StoredProcedure.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.SalesTotalsByAmount.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.SummaryOfSalesByQuarter.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.SummaryOfSalesByYear.View.sql" />
+    <EmbeddedResource Include="Repository\Migrations\1\Scripts\dbo.TenMostExpensiveProducts.StoredProcedure.sql" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
